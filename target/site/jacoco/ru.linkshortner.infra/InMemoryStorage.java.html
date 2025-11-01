@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InMemoryStorage.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">link-shortner-service</a> &gt; <a href="index.source.html" class="el_package">ru.linkshortner.infra</a> &gt; <span class="el_source">InMemoryStorage.java</span></div><h1>InMemoryStorage.java</h1><pre class="source lang-java linenums">package ru.linkshortner.infra;
+
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import ru.linkshortner.cli.NotificationService;
+import ru.linkshortner.core.Link;
+
+<span class="fc" id="L8">public class InMemoryStorage {</span>
+
+<span class="fc" id="L10">    private final Map&lt;String, Link&gt; codeIndex = new ConcurrentHashMap&lt;&gt;();</span>
+<span class="fc" id="L11">    private final Map&lt;UUID, List&lt;Link&gt;&gt; userLinks = new ConcurrentHashMap&lt;&gt;();</span>
+
+    public void saveLink(Link link) {
+<span class="fc" id="L14">        codeIndex.put(link.getShortCode(), link);</span>
+<span class="fc" id="L15">        userLinks.computeIfAbsent(link.getUserId(), k -&gt; new ArrayList&lt;&gt;()).add(link);</span>
+<span class="fc" id="L16">    }</span>
+
+    public Link getByShortCode(String code) {
+<span class="fc" id="L19">        return codeIndex.get(code);</span>
+    }
+
+    public List&lt;Link&gt; getByUser(UUID userId) {
+<span class="fc" id="L23">        return userLinks.getOrDefault(userId, List.of());</span>
+    }
+
+    public void removeIf(java.util.function.Predicate&lt;Link&gt; pred, NotificationService notify) {
+<span class="fc" id="L27">        List&lt;String&gt; toRemove = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        for (Map.Entry&lt;String, Link&gt; entry : codeIndex.entrySet()) {</span>
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">            if (pred.test(entry.getValue())) {</span>
+<span class="fc" id="L30">                toRemove.add(entry.getKey());</span>
+<span class="fc" id="L31">                notify.sendExpired(entry.getValue());</span>
+            }
+<span class="fc" id="L33">        }</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        for (String code : toRemove) {</span>
+<span class="fc" id="L35">            Link link = codeIndex.remove(code);</span>
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">            if (link != null) userLinks.get(link.getUserId()).remove(link);</span>
+<span class="fc" id="L37">        }</span>
+<span class="fc" id="L38">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

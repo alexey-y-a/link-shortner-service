@@ -1,0 +1,6 @@
+ru/linkshortner/core/LinkTest.class
+ru/linkshortner/cli/ConsoleAppTest.class
+ru/linkshortner/utils/Base62Test.class
+ru/linkshortner/core/LinkManagerTest.class
+ru/linkshortner/infra/InMemoryStorageTest.class
+ru/linkshortner/utils/UrlUtilTest.class

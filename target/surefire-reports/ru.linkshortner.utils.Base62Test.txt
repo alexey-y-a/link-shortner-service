@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: ru.linkshortner.utils.Base62Test
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in ru.linkshortner.utils.Base62Test

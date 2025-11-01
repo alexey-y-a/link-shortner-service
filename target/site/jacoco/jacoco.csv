@@ -1,0 +1,17 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+link-shortner-service,ru.linkshortner.utils,UrlUtil,3,15,0,0,1,5,1,1,1,1
+link-shortner-service,ru.linkshortner.utils,Base62,3,25,0,2,1,5,1,2,1,1
+link-shortner-service,ru.linkshortner.exceptions,AccessDeniedException,0,4,0,0,0,2,0,1,0,1
+link-shortner-service,ru.linkshortner.exceptions,InvalidUrlException,0,4,0,0,0,2,0,1,0,1
+link-shortner-service,ru.linkshortner.exceptions,ConfigLoadException,5,0,0,0,2,0,1,0,1,0
+link-shortner-service,ru.linkshortner.exceptions,LinkNotFoundException,0,4,0,0,0,2,0,1,0,1
+link-shortner-service,ru.linkshortner.exceptions,InvalidLimitException,0,4,0,0,0,2,0,1,0,1
+link-shortner-service,ru.linkshortner.core,Link,0,69,0,4,0,20,0,12,0,10
+link-shortner-service,ru.linkshortner.core,LinkManager,14,123,0,8,3,32,3,9,3,5
+link-shortner-service,ru.linkshortner.config,Config,60,23,0,0,14,6,4,3,4,3
+link-shortner-service,ru.linkshortner,Main,62,0,0,0,22,0,2,0,2,0
+link-shortner-service,ru.linkshortner.infra,UuidProvider,47,0,2,0,11,0,3,0,2,0
+link-shortner-service,ru.linkshortner.infra,InMemoryStorage,0,111,2,6,0,19,2,8,0,6
+link-shortner-service,ru.linkshortner.infra,CleanupScheduler,32,0,0,0,11,0,3,0,3,0
+link-shortner-service,ru.linkshortner.cli,NotificationService,32,0,0,0,7,0,3,0,3,0
+link-shortner-service,ru.linkshortner.cli,ConsoleApp,156,158,10,14,41,42,10,5,1,2

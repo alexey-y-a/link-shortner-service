@@ -1,2 +1,3 @@
-target/* linguist-vendored
-*.java linguist-detectable=true
+target/** linguist-vendored
+*.html linguist-vendored
+

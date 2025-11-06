@@ -62,8 +62,8 @@ src/
 │   │           │   └── LinkManager.java  # Менеджер ссылок
 │   │           ├── exceptions/  # Пользовательские исключения
 │   │           │   ├── AccessDeniedException.java  # Исключение для отказа в доступе
-│   │           │   ├── ConfigLoadException.java  # Исключение для ошибок загрузки конфигурации
-│   │           │   ├── InvalidLimitException.java  # Исключение для некорректного лимита переходов
+│   │           │   ├── ConfigLoadException.java  # Искл-е для ошибок загрузки конф-ии
+│   │           │   ├── InvalidLimitException.java  # Искл-е для некорректного лимита переходов
 │   │           │   ├── InvalidUrlException.java  # Исключение для невалидного URL
 │   │           │   └── LinkNotFoundException.java  # Исключение для несуществующей ссылки
 │   │           ├── infra/     # Инфраструктурные компоненты

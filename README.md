@@ -30,7 +30,7 @@
 - `exit` — выход.
 
 ## GitHub Actions (CI шаблон)
-Создайте `.github/workflows/maven.yml`:
+См. `.github/workflows/maven.yml`:
 ```yaml
 name: Java CI
 on: [push, pull_request]
@@ -50,42 +50,42 @@ src/
 ├── main/
 │   ├── java/
 │   │   └── ru/
-│   │       └── linkshortner/  # Корневой пакет проекта (сервис сокращения ссылок)
-│   │           ├── Main.java  # Основной класс приложения (точка входа, инициализация компонентов и запуск CLI)
+│   │       └── linkshortner/  # Корневой пакет проекта
+│   │           ├── Main.java  # Основной класс приложения
 │   │           ├── cli/       # Компоненты консольного интерфейса (CLI)
-│   │           │   ├── ConsoleApp.java  # Основное консольное приложение (обработка команд: shorten, open и т.д.)
+│   │           │   ├── ConsoleApp.java  # Основное консольное приложение
 │   │           │   └── NotificationService.java  # Сервис для отправки уведомлений 
-│   │           ├── config/    # Классы для конфигурации (загрузка свойств из файла)
-│   │           │   └── Config.java  # Класс для чтения конфигурации (TTL, лимиты и т.д. из config.properties)
+│   │           ├── config/    # Классы для конфигурации
+│   │           │   └── Config.java  # Класс для чтения конфигурации
 │   │           ├── core/      # Основная бизнес-логика (модели и менеджеры)
-│   │           │   ├── Link.java  # Модель данных для ссылки (поля: URL, код, TTL и методы isExpired/isBlocked)
-│   │           │   └── LinkManager.java  # Менеджер ссылок (создание, редактирование, генерация уникальных кодов)
-│   │           ├── exceptions/  # Пользовательские исключения (для обработки ошибок)
-│   │           │   ├── AccessDeniedException.java  # Исключение для отказа в доступе (не владелец ссылки)
+│   │           │   ├── Link.java  # Модель данных для ссылки
+│   │           │   └── LinkManager.java  # Менеджер ссылок
+│   │           ├── exceptions/  # Пользовательские исключения
+│   │           │   ├── AccessDeniedException.java  # Исключение для отказа в доступе
 │   │           │   ├── ConfigLoadException.java  # Исключение для ошибок загрузки конфигурации
 │   │           │   ├── InvalidLimitException.java  # Исключение для некорректного лимита переходов
 │   │           │   ├── InvalidUrlException.java  # Исключение для невалидного URL
 │   │           │   └── LinkNotFoundException.java  # Исключение для несуществующей ссылки
-│   │           ├── infra/     # Инфраструктурные компоненты (хранение, планировщики, провайдеры)
+│   │           ├── infra/     # Инфраструктурные компоненты
 │   │           │   ├── CleanupScheduler.java  # Планировщик автоматической очистки
-│   │           │   ├── InMemoryStorage.java  # Хранилище ссылок в памяти (ConcurrentHashMap для thread-safety)
-│   │           │   └── UuidProvider.java  # Провайдер UUID пользователя (генерация и сохранение в файл user.uuid)
+│   │           │   ├── InMemoryStorage.java  # Хранилище ссылок в памяти
+│   │           │   └── UuidProvider.java  # Провайдер UUID пользователя
 │   │           └── utils/     # Утилитарные классы (вспомогательные функции)
-│   │               ├── Base62.java  # Утилита для кодирования в Base62 (генерация коротких кодов из хэша)
-│   │               └── UrlUtil.java  # Утилиты для URL (валидация с throw на ошибки)
+│   │               ├── Base62.java  # Утилита для кодирования в Base62
+│   │               └── UrlUtil.java  # Утилиты для URL
 │   └── resources/            # Ресурсы (файлы конфигурации)
 └── test/                     # Директория для тестов (unit и интеграционные)
     └── java/
         └── ru/
             └── linkshortner/  # Тесты в том же пакете, что и основной код
                 ├── cli/       # Тесты для CLI
-                │   └── ConsoleAppTest.java  # Тесты консольного приложения (команды shorten, open, edit с моками)
+                │   └── ConsoleAppTest.java  # Тесты консольного приложения
                 ├── core/      # Тесты для бизнес-логики
-                │   ├── LinkManagerTest.java  # Тесты менеджера (создание, уникальность, редактирование, исключения)
-                │   └── LinkTest.java  # Тесты модели Link (isExpired, isBlocked, incrementClicks)
+                │   ├── LinkManagerTest.java  # Тесты менеджера
+                │   └── LinkTest.java  # Тесты модели Link
                 ├── infra/     # Тесты для инфраструктуры
-                │   └── InMemoryStorageTest.java  # Тесты хранилища (save/get/remove, concurrency с ExecutorService)
+                │   └── InMemoryStorageTest.java  # Тесты хранилища
                 └── utils/     # Тесты для утилит
-                    ├── Base62Test.java  # Тесты кодирования (encode для чисел)
-                    └── UrlUtilTest.java  # Тесты валидации URL (valid/invalid с assertThrows)
+                    ├── Base62Test.java  # Тесты кодирования
+                    └── UrlUtilTest.java  # Тесты валидации URL
 ```
